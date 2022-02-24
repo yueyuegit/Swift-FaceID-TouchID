@@ -93,25 +93,25 @@ class FaceAndTouchIDHelper: NSObject {
         }
     }
     
-    class func authFaceOrTouchID(clouser: @escaping ((Bool, NSError?) -> Void)) {
+    class func authFaceOrTouchID(closure: @escaping ((Bool, NSError?) -> Void)) {
         let context = LAContext()
         var error: NSError?
         let result = context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
         if let laError = error as? LAError {
-            clouser(result, laError as NSError)
+            closure(result, laError as NSError)
         } else {
-            clouser(result, nil)
+            closure(result, nil)
         }
     }
     
-    class func authSystemFaceOrTouchID(clouser: @escaping ((Bool, NSError?) -> Void)) {
+    class func authSystemFaceOrTouchID(closure: @escaping ((Bool, NSError?) -> Void)) {
         let context = LAContext()
         var error: NSError?
         let result = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error)
         if let laError = error as? LAError {
-            clouser(result, laError as NSError)
+            closure(result, laError as NSError)
         } else {
-            clouser(result, nil)
+            closure(result, nil)
         }
     }
 
